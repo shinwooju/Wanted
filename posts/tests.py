@@ -93,7 +93,7 @@ class PostViewTest(TestCase):
         Post.objects.all().delete()
         User.objects.all().delete()
 
-    def test_Post_View_Create_Success(self):
+    def test_post_view_create_success(self):
         token = jwt.encode({'id' : 3}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION" : token}
 
@@ -111,7 +111,7 @@ class PostViewTest(TestCase):
 
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json(), {"MESSAGE": "SUCCESS",
-        "data": {
+        "RESULT": {
             "author"     : "wooju2",
             "title"      : "테스트 8번",
             "content"    : "테스트 8번 내용",
@@ -120,7 +120,7 @@ class PostViewTest(TestCase):
             }
         )
 
-    def test_Post_View_Key_Error(self):
+    def test_post_view_key_error(self):
         token = jwt.encode({'id' : 3}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION": token}
 
@@ -137,7 +137,7 @@ class PostViewTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {'MESSAGE' : 'KEY_ERROR'})
 
-    def test_Post_View_Get_Success(self):
+    def test_post_view_get_success(self):
         client   = Client()
         response = client.get("/posts/1")
 
@@ -154,14 +154,14 @@ class PostViewTest(TestCase):
             }
         )
     
-    def test_Post_View_Get_Does_Not_Post(self):
+    def test_post_view_get_does_not_post(self):
         client   = Client()
         response = client.get("/posts/15")
 
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json(), {"MESSAGE" : "DOSE_NOT_EXIST_POST"})
 
-    def test_Post_View_Delete_Success(self):
+    def test_post_view_delete_success(self):
         token  = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION": token}
 
@@ -170,7 +170,7 @@ class PostViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    def test_Post_View_Delete_Dose_Not_Post(self):
+    def test_post_view_delete_dose_not_post(self):
         token  = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION": token}
 
@@ -179,7 +179,7 @@ class PostViewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
-    def test_Post_View_Delete_No_Permission(self):
+    def test_post_view_delete_no_permission(self):
         token  = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION": token}
 
@@ -188,7 +188,7 @@ class PostViewTest(TestCase):
 
         self.assertEqual(response.status_code, 403)
 
-    def test_Post_View_Put_Success(self):
+    def test_post_view_put_success(self):
         token = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION" : token}
 
@@ -205,7 +205,7 @@ class PostViewTest(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json(), {"MESSAGE": "SUCCESS"})
 
-    def test_Post_View_Put_Dose_Not_Exist_Post(self):
+    def test_post_view_put_dose_not_exist_post(self):
         token = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION" : token}
 
@@ -222,7 +222,7 @@ class PostViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json(), {"MESSAGE" : "DOSE_NOT_EXIST_POST"})
 
-    def test_Post_View_Put_No_Permission(self):
+    def test_post_view_put_no_permission(self):
         token = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION" : token}
 
@@ -239,7 +239,7 @@ class PostViewTest(TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.json(), {"MESSAGE" : "NO_PERMISSION"})
 
-    def test_Post_View_Put_Key_Error(self):
+    def test_post_view_put_key_error(self):
         token = jwt.encode({'id' : 1}, SECRET_KEY, algorithm = "HS256")
         header = {"HTTP_AUTHORIZATION" : token}
 
@@ -256,7 +256,7 @@ class PostViewTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "KEY_ERROR"})
 
-    def test_PostList_View_Get_List_Success(self):
+    def test_postlist_view_get_list_success(self):
         client = Client()
         response = client.get("/posts/list?offset=0&limit=5")
 

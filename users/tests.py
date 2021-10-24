@@ -35,7 +35,7 @@ class SignUpTest(TestCase):
     def tearDown(self):
         User.objects.all().delete()
 
-    def test_SignUp_View_Create_Success(self):
+    def test_signup_view_create_success(self):
         user = {
             "name"           : "wooju3",
             "email"          : "zkzkxls123@naver.com",
@@ -51,7 +51,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json(), {"MESSAGE" : "SUCCESS"})
 
-    def test_SignUp_View_Empty_Value(self):
+    def test_signup_view_empty_value(self):
         user = {
             "name"           : "",
             "email"          : "zkzkxlsnaver.com",
@@ -67,7 +67,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "EMPTY_VALUE"})
 
-    def test_SignUp_View_Invalid_Email(self):
+    def test_siguup_view_invalid_email(self):
         user = {
             "name"           : "wooju4",
             "email"          : "zkzkxlsnaver.com",
@@ -83,7 +83,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "EMAIL_VALIDATION"})
 
-    def test_SignUp_View_Invalid_Password(self):
+    def test_signup_view_invalid_password(self):
         user = {
             "name"           : "wooju5",
             "email"          : "zkzkxls1234@naver.com",
@@ -99,7 +99,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "PASSWORD_VALIDATION"})
 
-    def test_SignUp_View_Exist_Email(self):
+    def test_signup_view_exist_email(self):
         user = {
             "name"           : "wooju7",
             "email"          : "zkzkxls@naver.com",
@@ -115,7 +115,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "ALREADY_EXISTED_EAMIL"})
 
-    def test_SignUp_View_Check_Password(self):
+    def test_signup_view_check_password(self):
         user = {
             "name"           : "wooju10",
             "email"          : "zkzkxls77@naver.com",
@@ -131,7 +131,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "PASSWORD_NOT_CORRECT"})
 
-    def test_SignUp_View_Key_Error(self):
+    def test_signup_view_key_error(self):
         user = {
             "na"             : "grg",
             "email"          : "zkzkxls@na.com",
@@ -162,7 +162,7 @@ class SignInTest(TestCase):
         User.objects.all().delete()
 
     @patch("requests.post")
-    def test_SignIn_View_Success(self, mocked_requests):
+    def test_signin_view_success(self, mocked_requests):
         user = {
             "email"    : "zkzkxls@abc.com",
             "password" : "wooju123!!",
@@ -184,7 +184,7 @@ class SignInTest(TestCase):
 
         self.assertEqual(response.status_code, 201)
         
-    def test_SignIn_View_Empty_Value(self):
+    def test_signin_view_empty_value(self):
         user = {
             "email"    : "",
             "password" : "wooju123!!",
@@ -198,7 +198,7 @@ class SignInTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {"MESSAGE" : "EMPTY_VALUE"})
 
-    def test_SignIn_View_Not_Exist_User(self):
+    def test_signin_view_not_exist_user(self):
         user = {
             "email"    : "zkzkxls@naver.com",
             "password" : "wooju123!!",
@@ -212,7 +212,7 @@ class SignInTest(TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.json(), {"MESSAGE" : "USER_DOES_NOT_EXIST"})
 
-    def test_SignIn_View_Invalid_Password(self):
+    def test_signin_view_invalid_password(self):
         user = {
             "email"    : "zkzkxls@abc.com",
             "password" : "wooju123@",
@@ -226,7 +226,7 @@ class SignInTest(TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.json(), {"MESSAGE" : "INVALID_PASSWORD"})
 
-    def test_SignIn_View_Key_Error(self):
+    def test_signin_view_key_error(self):
         user = {
             "ema"      : "zkzkxls@abc.com",
             "password" : "wooju123@",

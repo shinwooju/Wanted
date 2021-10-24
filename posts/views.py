@@ -30,7 +30,7 @@ class PostView(View):
                 'created_at' : post.created_at.strftime('%Y-%m-%d %H:%M:%S')
             }
 
-            return JsonResponse({'MESSAGE' : 'SUCCESS', 'data' : result},status = 201)
+            return JsonResponse({'MESSAGE' : 'SUCCESS', 'RESULT' : result},status = 201)
         
         except KeyError:
             return JsonResponse({'MESSAGE' : 'KEY_ERROR'}, status = 400)

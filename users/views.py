@@ -44,8 +44,6 @@ class SignUpView(View):
                 password = hashed_password,
                 )
 
-            print(user.password)
-
             return JsonResponse({'MESSAGE' : 'SUCCESS'}, status = 201)
 
         except KeyError:
