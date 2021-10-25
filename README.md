@@ -27,6 +27,7 @@
 ### 구현 방법
 
 - 가상환경 생성(conda사용을 가정) conda create -n (가상환경 이름)
+- conda activate (생성한 가상환경 이름) 가상환경 실행
 - git clone https://github.com/shinwooju/Wanted.git
 - pip install -r requirements.txt를 입력하여 package install 진행
 - python manage.py runserver 입력
